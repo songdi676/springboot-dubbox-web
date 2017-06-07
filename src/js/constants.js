@@ -3,7 +3,7 @@
 angular.module('app')
     .constant('APP_CONST', {
         PROPERTY: {
-            API_URL: ''
+            API_URL: 'http://10.63.181.138:8090'
         },
         STORAGE: {
             USER: 'user',
