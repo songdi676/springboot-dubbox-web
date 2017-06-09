@@ -5258,3 +5258,11 @@ a.text-#000000:hover {
     background-color: #7266ba;
   }
 }
+/*machine-css*/
+.machineNumber{
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    top: -35px;
+    font-weight: bold;
+}

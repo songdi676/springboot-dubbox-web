@@ -195,6 +195,21 @@
                         }]
                 }
             })
+            .state('app.machine', {
+                url: '/machine',
+                templateUrl: 'tpl/machine/dashboard.html',
+                controller: 'MachinedashboardCtrl',
+                resolve: {
+                    deps: ['uiLoad',
+                        function (uiLoad) {
+                            return uiLoad.load([
+                                'vendor/echarts/echarts.js',
+                                'js/machine/machine-dashboard.js',
+                                'js/machine/machine-services.js'
+                            ]);
+                        }]
+                }
+            })
 
             .state('access', {
                 url: '/access',
