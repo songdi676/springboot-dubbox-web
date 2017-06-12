@@ -6,12 +6,7 @@
     function MachinedashboardCtrl($rootScope, $scope, machineService) {
         $scope.machine = {
             name: "机台管理",
-            number: {
-
-            }
         }
-
-
         machineService.machineList()
             .then(function (data) {
                 $scope.data = data;
@@ -25,29 +20,16 @@
                 $rootScope.loading = false;
             })
             ;
-        // $.ajax({
-        //     type: "GET",
-        //     url: APP_CONST.PROPERTY. API_URL + "/machine/monitor",
-        //     dataType: "json",
-        //     success: function (data) {
-        //         //console.log(data.machine);
-        //         $scope.data = data;
-        //         $.each(data, function (key, value) {
-        //             //data.machine[key].machineNumber;
-        //             console.log(value.machineNumber);
-        //             createCharts("machine-" + value.machineNumber, key, value.machineNumber, value)
-        //         })
-        //     }
-        // })
+
         setInterval(function () {
             //调用ajax获取开机率
-           machineService.machineList()
-            .then(function (data) {
-                $scope.data = data;
-            })
-            .finally(function () {
-                $rootScope.loading = false;
-            });
+            machineService.machineList()
+                .then(function (data) {
+                    $scope.data = data;
+                })
+                .finally(function () {
+                    $rootScope.loading = false;
+                });
         }, 2000);
 
         function createCharts(id, key, machineNumber, machineInfo) {
@@ -78,8 +60,44 @@
                     {
                         name: '机器运行指标',
                         type: 'gauge',
-                        detail: { formatter: '{value}%' },
+                        z: 3,
+                        min: 0,
+                        max: 100,
+                        splitNumber: 10,
+                        radius: '75%',
+                        axisLine: {            // 坐标轴线
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                width: 10,
+                                color:[[0.3, '#da0d08'], [0.7, '#e08d0c'], [1, '#01a058']]
+                            }
+                        },
+                        axisTick: {            // 坐标轴小标记
+                            length: 15,        // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        splitLine: {           // 分隔线
+                            length: 20,         // 属性length控制线长
+                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                color: 'auto'
+                            }
+                        },
+                        title: {
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bolder',
+                                fontSize: 20
+                            }
+                        },
+                        detail: {
+                            textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                fontWeight: 'bolder'
+                            },
+                            formatter: '{value}%'
+                        },
+
                         data: [{ value: 50, name: '开机率' }]
+
                     }
                 ]
             };
