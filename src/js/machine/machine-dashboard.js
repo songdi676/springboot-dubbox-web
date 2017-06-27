@@ -30,7 +30,7 @@
                 .finally(function () {
                     $rootScope.loading = false;
                 });
-        }, 2000);
+        }, 10000);
 
         function createCharts(id, key, machineNumber, machineInfo) {
             var all = $("#all");
